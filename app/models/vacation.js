@@ -1,10 +1,13 @@
 'use strict';
 
+var Mongo = require('mongodb');
+
 function Vacation(o){
   this.name        = o.name;
   this.coordinates = {lat:parseFloat(o.lat), lng:parseFloat(o.lng)};
   this.start       = new Date(o.start);
   this.end         = new Date(o.end);
+  this.photos      = [];
 }
 
 Object.defineProperty(Vacation, 'collection', {
@@ -18,6 +21,11 @@ Vacation.create = function(o, cb){
 
 Vacation.all = function(cb){
   Vacation.collection.find().toArray(cb);
+};
+
+Vacation.findById = function(id, cb){
+  var _id = Mongo.ObjectID(id);
+  Vacation.collection.findOne({_id:_id}, cb);
 };
 
 module.exports = Vacation;

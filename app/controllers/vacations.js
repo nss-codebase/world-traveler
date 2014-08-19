@@ -19,3 +19,9 @@ exports.index = function(req, res){
   });
 };
 
+exports.show = function(req, res){
+  Vacation.findById(req.params.id, function(err, vacation){
+    res.render('vacations/show', {vacation:vacation, moment:moment});
+  });
+};
+
