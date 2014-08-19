@@ -39,16 +39,13 @@ Vacation.prototype.uploadPhoto = function(files, cb){
       exist = fs.existsSync(dir),
       self  = this;
 
-  if(!exist){
-    fs.mkdirSync(dir);
-  }
+  if(!exist){fs.mkdirSync(dir);}
 
   files.photos.forEach(function(photo){
     var ext    = path.extname(photo.path),
         rel    = '/img/' + self._id + '/' + self.photos.length + ext,
         abs    = dir + '/' + self.photos.length + ext;
     fs.renameSync(photo.path, abs);
-
     self.photos.push(rel);
   });
 

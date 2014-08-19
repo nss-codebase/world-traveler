@@ -29,14 +29,14 @@ block content
             .form-group
               label(for='url') Photo URL
               input.form-control#url(type='text', name='url')
-            button.btn.btn-success(type='submit') Add Photo
+            button.btn.btn-success(type='submit') Download Photo
       .row
         .col-xs-12
           form(method='post', action='/vacations/#{vacation._id}/photos/upload', enctype='multipart/form-data')
             .form-group
               label(for='photos') Photos
               input.form-control#photos(type='file', name='photos', multiple=true)
-            button.btn.btn-success(type='submit') Add Photos
+            button.btn.btn-success(type='submit') Upload Photos
   .row
     .col-xs-12
       each photo in vacation.photos
